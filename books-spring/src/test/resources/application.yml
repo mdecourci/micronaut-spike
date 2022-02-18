@@ -1,0 +1,6 @@
+app:
+  topic: analytics
+  group: book-group
+
+logging:
+  file: logback.xml

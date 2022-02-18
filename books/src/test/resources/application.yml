@@ -1,0 +1,13 @@
+micronaut:
+  server:
+    netty:
+      logLevel: DEBUG
+
+kafka:
+  bootstrap:
+    servers: localhost:9092
+
+
+logger:
+  levels:
+    io.micronaut.http.client: DEBUG
