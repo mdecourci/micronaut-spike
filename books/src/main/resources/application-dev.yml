@@ -1,0 +1,16 @@
+micronaut:
+  server:
+    port: 9080
+    netty:
+      logLevel: DEBUG
+
+    application:
+      name: books
+
+  http:
+    client:
+      log-level: DEBUG
+
+kafka:
+  bootstrap:
+    servers: localhost:9092

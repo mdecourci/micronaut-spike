@@ -1,0 +1,12 @@
+server:
+  port: 9070
+
+application:
+  name: books-spring
+
+app:
+  topic: analytics
+
+kafka:
+  bootstrap:
+    servers: localhost:9092
