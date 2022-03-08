@@ -19,7 +19,7 @@ Book REST service endpoints:
 * http://localhost:9080/book/{isbn}  - Micronaut REST API
 * http://localhost:9070/book/{isbn}  - Spring Boot REST API
 
-## Setup
+## Running with Java
 
 * Use Java 16
 * cd micronaut-spike/
@@ -32,9 +32,22 @@ Book REST service endpoints:
 * cd ../books-spring
 * java -jar target/books-0.1.jar
 
+## Running with Docker
+
+* Use Java 16
+* cd micronaut-spike/
+* mvn clean install
+* docker-compose up -d
+
+## Kafka messages:
+
+Goto: http://localhost:9000
+
 ## Timings (Crude)
 
-### Service/JVM Startup
+### Service Startup
+
+## Running Jar files
 
 * "books" - Micronaut REST/Kafka client - approx 0.5s
 * "analytics" - Micronaut Kafka Listener - approx 2secs
@@ -51,10 +64,13 @@ Book REST service endpoints:
 * Faster execution times - Micronaut application compilation, has stages that parse code annotations to generate
   intermediary real java classes.
 
-Avoids runtime latency redirections that annotations bring (See generated intermidiary java classes "$<class name>
-$Definition "files in target/classes/. Also parses spring annotations (hybrid/all Spring) if micronaut processor is on
-the classpath and the Micronaut application annotation is declared in the main class.
+Micronaut framework provides a smaller, faster foot-print in the JVM by preprocessing java class annotations to java
+
+source code that replace annotations at runtime.
+
+See generated java classes: target/classes/$<class name>$Definition.
 
 ### Cons
 
 * Still new.
+

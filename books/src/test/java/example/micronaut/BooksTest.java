@@ -59,7 +59,7 @@ class BooksTest implements TestPropertyProvider {
         String isbn = "1491950358";
         final var result = retrieveGet("/book/" + isbn);
 
-        Awaitility.await().atMost(2, TimeUnit.SECONDS).until(() -> result.isPresent());
+        Awaitility.await().atMost(10, TimeUnit.SECONDS).until(() -> result.isPresent());
 
         assertEquals(1, received.size());
         assertEquals(isbn, received.stream().collect(Collectors.toList()).get(0).getIsbn());
@@ -71,7 +71,7 @@ class BooksTest implements TestPropertyProvider {
             retrieveGet("/book/INVALID");
         });
 
-        Awaitility.await().atMost(Duration.ofSeconds(5));
+        Awaitility.await().atMost(Duration.ofSeconds(10));
 
         assertTrue(received.isEmpty());
     }

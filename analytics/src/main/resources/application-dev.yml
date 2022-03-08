@@ -3,4 +3,10 @@ micronaut:
     port: 9090
   application:
     name: analytics
-kafka.bootstrap.servers: localhost:9092
+
+kafka:
+  bootstrap:
+    servers: localhost:9092
+
+app:
+  topic: analytics
