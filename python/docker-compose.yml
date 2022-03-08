@@ -1,39 +1,13 @@
 version: '3.7'
 
 services:
-  analytics:
-    build: ./analytics
-    container_name: analytics
-    ports:
-      - 9090:9090
-    depends_on:
-      - kafka
-
-  books-spring:
-    build: ./books-spring
-    container_name: books-spring
-    ports:
-      - 9070:9070
-    depends_on:
-      - analytics
-      - kafka
-
-  books:
-    build: ./books
-    container_name: books
-    ports:
-      - 9080:9080
-    depends_on:
-      - analytics
-      - kafka
-
   # https://hub.docker.com/r/confluentinc/cp-zookeeper/tags
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
     hostname: zookeeper
     ports:
-      - "2181:2181"
+    - "2181:2181"
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
 
@@ -43,7 +17,7 @@ services:
     container_name: kafka
     hostname: kafka
     ports:
-      - "9092:9092"
+    - "9092:9092"
     environment:
       KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
@@ -55,7 +29,7 @@ services:
       KAFKA_NUM_PARTITIONS: 3
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
-      - zookeeper
+    - zookeeper
   # https://hub.docker.com/r/obsidiandynamics/kafdrop
   kafdrop:
     image: obsidiandynamics/kafdrop
@@ -66,4 +40,4 @@ services:
       KAFKA_BROKERCONNECT: "kafka:19092"
       JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
     depends_on:
-      - kafka
+    - kafka

@@ -14,7 +14,7 @@ public class AnalyticsListener {
     @Inject
     private AnalyticsService analyticsService;
 
-    @Topic("analytics")
+    @Topic("${app.topic}")
     public void updateAnalytics(Book book, @KafkaKey String key) {
         System.out.println("AnalyticsListener.updateAnalytics() key = " + key + ", book = " + book);
         analyticsService.updateBookAnalytics(book);

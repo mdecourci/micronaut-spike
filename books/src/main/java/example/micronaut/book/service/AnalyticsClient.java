@@ -8,6 +8,6 @@ import reactor.core.publisher.Mono;
 
 @KafkaClient
 public interface AnalyticsClient {
-    @Topic("analytics")
+    @Topic("${app.topic}")
     Mono<Book> updateAnalytics(@KafkaKey String key, Book book);
 }
